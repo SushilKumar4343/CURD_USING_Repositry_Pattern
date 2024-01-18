@@ -1,0 +1,55 @@
+﻿@model CURD_Using_Repository.Models.User
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 border border-4 rounded rounded-3 p-4">
+            <h3 class="text-info text-center p-2 m-1">User Detail Recod</h3>
+            <form method="get" asp-action="Detail">
+                <div class="form-check">
+                    <label asp-for="Name"></label>
+                    <input type="text" asp-for="Name" class="form-control"  readonly="readonly"  placeholder="Enter Name" />
+                    <input type="hidden" asp-for="UserId" />
+                </div>
+                <div class="form-check" >
+                    <label asp-for="Gender"></label><br />
+                    <label>
+                        <input type="radio" class="form-check-inline" name="Gender" asp-for="Gender" value="Male" />Male
+                    </label>
+                    <label>
+                        <input type="radio" class="form-check-inline" name="Gender" asp-for="Gender" value="FeMale" />FeMale
+                    </label>
+                    <label>
+                        <input type="radio" class="form-check-inline" name="Gender" asp-for="Gender" value="Other" />Other
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label asp-for="Email"></label>
+                    <input type="email" asp-for="Email" class="form-control" readonly="readonly" placeholder="Enter Email" />
+                </div>
+                <div class="form-check">
+                    <label asp-for="PinCode"></label>
+                    <input type="number" asp-for="PinCode" class="form-control" readonly="readonly" placeholder="Enter PinCode" />
+                </div>
+                <div class="form-check">
+                    <label asp-for="IsActive"></label>
+                    @if (Model.IsActive == true)
+                    {
+                        <input type="checkbox" asp-for="IsActive" class="form-check-inline" checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" asp-for="IsActive" class="form-check-inline" />
+                    }
+                </div>
+                <div>
+                    <button class="btn btn-sm btn-success float-left " asp-action="GetUserList" asp-controller="User">Back</button>
+                    <a class="btn btn-sm btn-primary m-1 float-right" asp-controller="User" asp-action="Edit" asp-route-id="@Model.UserId">Edit</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
